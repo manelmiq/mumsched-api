@@ -35,13 +35,19 @@ Route::post('students', 'StudentsController@store');
 Route::put('students/{students}', 'StudentsController@update');
 Route::delete('students/{students}', 'StudentsController@delete');
 
-
 //=================Course Routes===========================
 Route::get('courses', 'CoursesController@index');
 Route::get('courses/{course}', 'CoursesController@show');
 Route::post('courses', 'CoursesController@store');
 Route::put('courses/{course}', 'CoursesController@update');
 Route::delete('courses/{course}', 'CoursesController@delete');
+
+//=================Faculty Routes===========================
+Route::get('faculty', 'FacultyController@index');
+Route::get('faculty/{faculty}', 'FacultyController@show');
+Route::post('faculty', 'FacultyController@store');
+Route::put('faculty/{faculty}', 'FacultyController@update');
+Route::delete('faculty/{faculty}', 'FacultyController@delete');
 
 
 //php artisan make:controller PhotoController --resource
