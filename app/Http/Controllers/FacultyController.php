@@ -3,37 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Faculties;
+use App\Services\FacultyService as FacultyService;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
-    //
-    //
+    protected $facultyService;
+
+    public function __construct(FacultyService $facultyService)
+    {
+        $this->facultyService = $facultyService;
+    }
+
     public function index()
     {
-        return Faculties::all();
+        return $this->facultyService->index();
     }
 
     public function show($id)
     {
-        return Faculties::find($id);
+        return $this->facultyService->show($id);
     }
 
     public function store(Request $request)
     {
-        $faculty = Faculties::create($request->all());
-        return response()->json($faculty);
+        return $this->facultyService->store($request);
     }
 
     public function update(Request $request, Faculties $faculty)
     {
-        $faculty->update($request->all());
-        return response()->json($faculty);
+        return $this->facultyService->update($request, $faculty);
     }
 
     public function delete(Faculties $faculty)
     {
-        $faculty->delete();
-        return response()->json(null, 204);
+        return $this->facultyService->delete($faculty);
     }
 }

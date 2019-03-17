@@ -3,38 +3,40 @@
 namespace App\Http\Controllers;
 
 use App\Courses;
+use App\Services\CoursesService;
 use Illuminate\Http\Request;
 
 class CoursesController extends Controller
 {
-    //
+    protected $coursesService;
+
+    public function __construct(CoursesService $coursesService)
+    {
+        $this->coursesService = $coursesService;
+    }
+
     public function index()
     {
-        //
-        return Courses::all();
+        return $this->coursesService->index();
     }
 
     public function show($id)
     {
-
-        return Courses::find($id);
+        return $this->coursesService->show($id);
     }
 
     public function store(Request $request)
     {
-        $course = Courses::create($request->all());
-        return response()->json($course);
+        return $this->coursesService->store($request);
     }
 
     public function update(Request $request, Courses $course)
     {
-        $course->update($request->all());
-        return response()->json($course);
+        return $this->coursesService->update($request, $course);
     }
 
     public function delete(Courses $course)
     {
-        $course->delete();
-        return response()->json(null, 204);
+        return $this->coursesService->delete($course);
     }
 }
