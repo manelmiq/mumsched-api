@@ -207,7 +207,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`prerequisites` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_course` INT NOT NULL,
-  `code` VARCHAR(45) NOT NULL,
   `created_at` TIMESTAMP(0) NULL,
   `updated_at` TIMESTAMP(0) NULL,
   INDEX `fk_pre_requisits_courses1_idx` (`id_course` ASC),
