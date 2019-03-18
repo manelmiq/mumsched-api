@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\StudentsService;
 use Illuminate\Http\Request;
-
 use App\Students;
-use DB;
 
 class StudentsController extends Controller
 {
+
+    protected $studentsService;
+
+    public function __construct(StudentsService $studentsService)
+    {
+        $this->studentsService = $studentsService;
+    }
+
     public function login(Request $request){
 
         $students = Students::select('id', 'firstName', 'lastName', 'email')
@@ -23,27 +30,10 @@ class StudentsController extends Controller
         return response()->json($response);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
-        return Students::all();
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-        //
+        return $this->studentsService->index();
     }
 
     /**
@@ -54,33 +44,13 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        $students = Students::create($request->all());
-        return response()->json($students);
-
-        //
+        return $this->studentsService->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->studentsService->show($id);
     }
 
     /**
@@ -92,14 +62,11 @@ class StudentsController extends Controller
      */
     public function update(Request $request, Students $students)
     {
-        //
-        $students->update($request->all());
-        return response()->json($students);
+        return $this->studentsService->update($request, $students);
     }
 
     public function delete(Students $students)
     {
-        $students->delete();
-        return response()->json(null, 204);
+        return $this->studentsService->delete($students);
     }
 }
