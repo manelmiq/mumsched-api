@@ -56,6 +56,13 @@ Route::post('blocks', 'BlocksController@store');
 Route::put('blocks/{block}', 'BlocksController@update');
 Route::delete('blocks/{block}', 'BlocksController@delete');
 
+//=================Entries Routes===========================
+Route::get('entries', 'EntriesController@index');
+Route::get('entries/{entry}', 'EntriesController@show');
+Route::post('entries', 'EntriesController@store');
+Route::put('entries/{entry}', 'EntriesController@update');
+Route::delete('entries/{entry}', 'EntriesController@delete');
+
 
 //php artisan make:controller PhotoController --resource
 
