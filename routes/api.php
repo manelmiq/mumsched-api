@@ -85,6 +85,14 @@ Route::get('entries/{entry}', 'EntriesController@show');
 Route::post('entries', 'EntriesController@store');
 Route::put('entries/{entry}', 'EntriesController@update');
 Route::delete('entries/{entry}', 'EntriesController@delete');
+Route::get('entries/{entry}/students', 'EntriesController@getStudents');
+
+//=================Admins Routes===========================
+Route::get('admins', 'AdminsController@index');
+Route::get('admins/{admin}', 'AdminsController@show');
+Route::post('admins', 'AdminsController@store');
+Route::put('admins/{admin}', 'AdminsController@update');
+Route::delete('admins/{admin}', 'AdminsController@delete');
 
 
 //php artisan make:controller PhotoController --resource

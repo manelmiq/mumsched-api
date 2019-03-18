@@ -39,4 +39,10 @@ class EntriesService
         $entry->delete();
         return response()->json(null, 204);
     }
+
+    public function getStudents($id)
+    {
+//        return Students::where('id_entry', $id)->get();
+        return Entries::find($id)->students()->get();
+    }
 }
