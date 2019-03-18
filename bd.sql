@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`courses` (
   `course_level` VARCHAR(45) NOT NULL,
   `on_campus` TINYINT NULL,
   `created_at` TIMESTAMP(0) NULL,
-  `update_at` TIMESTAMP(0) NULL,
+  `updated_at` TIMESTAMP(0) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `code_UNIQUE` (`code` ASC))
 ENGINE = InnoDB;
