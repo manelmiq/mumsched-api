@@ -39,4 +39,18 @@ class AdminsController extends Controller
     {
         return $this->adminsService->delete($admin);
     }
+
+    public function login(Request $request){
+        $admin = Admins::select('id', 'name', 'email')
+            ->where([
+                ['email', '=', $request->input('email')],
+                ['password', '=', $request->input('password')],
+            ])->first();
+        $response['response'] = $admin;
+        if($admin == null){
+            $response['response'] = false;
+        }
+        return response()->json($response);
+    }
+
 }

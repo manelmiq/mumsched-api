@@ -35,7 +35,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`students` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
+  `firstName` VARCHAR(45) NOT NULL,
+  `lastName` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `id_entry` INT NOT NULL,
@@ -269,6 +270,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`student_blocks` (
 ENGINE = InnoDB;
 
 
-SET SQL_MODE=1;
-SET FOREIGN_KEY_CHECKS=1;
-SET UNIQUE_CHECKS=1;
+SET SQL_MODE=0;
+SET FOREIGN_KEY_CHECKS=0;
+SET UNIQUE_CHECKS=0;

@@ -23,9 +23,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('login')->group(function () {
     Route::post('student', 'StudentsController@login');
-//    Route::post('student', 'StudentsController@login');
-//    Route::post('student', 'StudentsController@login');
-
+    Route::post('admin', 'AdminsController@login');
+    Route::post('faculty', 'FacultyController@login');
 });
 
 

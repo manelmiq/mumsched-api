@@ -39,4 +39,18 @@ class FacultyController extends Controller
     {
         return $this->facultyService->delete($faculty);
     }
+
+    public function login(Request $request){
+        $faculty = Faculties::select('id', 'name', 'email')
+            ->where([
+                ['email', '=', $request->input('email')],
+                ['password', '=', $request->input('password')],
+            ])->first();
+        $response['response'] = $faculty;
+        if($faculty == null){
+            $response['response'] = false;
+        }
+        return response()->json($response);
+    }
+
 }
