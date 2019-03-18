@@ -94,6 +94,15 @@ Route::put('admins/{admin}', 'AdminsController@update');
 Route::delete('admins/{admin}', 'AdminsController@delete');
 
 
+//==================== Sections Routes ======================
+Route::get('sections', 'SectionsController@index');
+Route::get('sections/{section}', 'SectionsController@show');
+Route::post('sections', 'SectionsController@store');
+Route::put('sections/{section}', 'SectionsController@update');
+Route::delete('sections/{section}', 'SectionsController@delete');
+
+
+
 //php artisan make:controller PhotoController --resource
 
 
