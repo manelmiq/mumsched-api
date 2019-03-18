@@ -27,7 +27,6 @@ class ArticleTest extends TestCase
 
         )->getContent();
 
-
         $this->assertTrue(true, true);
 
 //
