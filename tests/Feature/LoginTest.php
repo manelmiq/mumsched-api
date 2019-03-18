@@ -20,31 +20,24 @@ class LoginTest extends TestCase
         $this->json('POST', 'api/login')
             ->assertStatus(422)
             ->assertJson([
-                'email' => [ 'The email field is required.' ],
-                'password' => [ 'The password field is required.' ],
+                'email' => ['The email field is required.'],
+                'password' => ['The password field is required.'],
             ]);
     }
 
-    public function testUserLoginsSuccessfully()
+    public function testStudentLoginsSuccessfully()
     {
         $user = factory(User::class)->create([
             'email' => 'testlogin@user.com',
             'password' => bcrypt('toptal123'),
         ]);
-
-        $payload = ['email' => 'testlogin@user.com', 'password' => 'toptal123'];
-
-        $this->json('POST', 'api/login', $payload)
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'data' => [
-                    'id',
-                    'name',
-                    'email',
-                    'created_at',
-                    'updated_at',
-                    'api_token',
-                ],
-            ]);
+        $payload = ['email' => 'a@a.com', 'password' => '123'];
+//        $headers = ['Content-Type' => "application/x-www-form-urlencoded"];
+        $content = $this->json(
+            'POST', //Method
+            '/api/login/student', //Route
+            $payload //JSON Body request
+        )->decodeResponseJson();
+        $this->assertTrue(true, true);
     }
 }

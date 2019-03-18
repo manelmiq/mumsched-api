@@ -5,9 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Students;
+use DB;
 
 class StudentsController extends Controller
 {
+    public function login(Request $request){
+
+        $students = Students::select('id', 'firstName', 'lastName', 'email')
+            ->where([
+                ['email', '=', $request->input('email')],
+                ['password', '=', $request->input('password')],
+                    ])->first();
+        $response['response'] = $students;
+        if($students == null){
+            $response['response'] = false;
+        }
+        return response()->json($response);
+    }
+
     /**
      * Display a listing of the resource.
      *
