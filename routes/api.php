@@ -49,6 +49,13 @@ Route::post('faculty', 'FacultyController@store');
 Route::put('faculty/{faculty}', 'FacultyController@update');
 Route::delete('faculty/{faculty}', 'FacultyController@delete');
 
+//=================Blocks Routes===========================
+Route::get('blocks', 'BlocksController@index');
+Route::get('blocks/{block}', 'BlocksController@show');
+Route::post('blocks', 'BlocksController@store');
+Route::put('blocks/{block}', 'BlocksController@update');
+Route::delete('blocks/{block}', 'BlocksController@delete');
+
 
 //php artisan make:controller PhotoController --resource
 
