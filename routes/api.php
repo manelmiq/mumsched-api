@@ -62,6 +62,7 @@ Route::get('entries/{entry}', 'EntriesController@show');
 Route::post('entries', 'EntriesController@store');
 Route::put('entries/{entry}', 'EntriesController@update');
 Route::delete('entries/{entry}', 'EntriesController@delete');
+Route::get('entries/{entry}/students', 'EntriesController@getStudents');
 
 //=================Admins Routes===========================
 Route::get('admins', 'AdminsController@index');
