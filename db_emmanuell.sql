@@ -24,11 +24,12 @@ DROP TABLE IF EXISTS `admins`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `firstName` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -40,8 +41,34 @@ CREATE TABLE `admins` (
 
 LOCK TABLES `admins` WRITE;
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
-INSERT INTO `admins` VALUES (1,'Teste','test','test',NULL,NULL);
+INSERT INTO `admins` VALUES (1,'Teste','test','test',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `articles`
+--
+
+DROP TABLE IF EXISTS `articles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `articles` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `body` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `articles`
+--
+
+LOCK TABLES `articles` WRITE;
+/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -60,7 +87,7 @@ CREATE TABLE `blocks` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,6 +96,7 @@ CREATE TABLE `blocks` (
 
 LOCK TABLES `blocks` WRITE;
 /*!40000 ALTER TABLE `blocks` DISABLE KEYS */;
+INSERT INTO `blocks` VALUES (1,'2019-03-18 20:35:23','2019-03-18 20:35:27','january_block',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `blocks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +118,7 @@ CREATE TABLE `courses` (
   `update_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code_UNIQUE` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,6 +127,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
+INSERT INTO `courses` VALUES (1,'25','56','45','4400',4,NULL,NULL);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,11 +166,12 @@ DROP TABLE IF EXISTS `faculties`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `faculties` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
+  `firstName` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -153,7 +183,7 @@ CREATE TABLE `faculties` (
 
 LOCK TABLES `faculties` WRITE;
 /*!40000 ALTER TABLE `faculties` DISABLE KEYS */;
-INSERT INTO `faculties` VALUES (1,'Joe Lerman','joe','joe',NULL,NULL);
+INSERT INTO `faculties` VALUES (1,'Joe Lerman','joe','joe',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `faculties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,6 +248,55 @@ LOCK TABLES `faculty_courses_preferences` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `migrations`
+--
+
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `migrations`
+--
+
+LOCK TABLES `migrations` WRITE;
+/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2017_03_31_024239_create_articles_table',1),(4,'2017_04_10_132308_adds_api_token_to_users_table',1);
+/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `password_resets`
+--
+
+DROP TABLE IF EXISTS `password_resets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+LOCK TABLES `password_resets` WRITE;
+/*!40000 ALTER TABLE `password_resets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `password_resets` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `pre_requisits`
 --
 
@@ -267,7 +346,7 @@ CREATE TABLE `sections` (
   CONSTRAINT `fk_blocks_courses_blocks` FOREIGN KEY (`id_block`) REFERENCES `blocks` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_blocks_courses_courses` FOREIGN KEY (`id_course`) REFERENCES `courses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_blocks_courses_faculty` FOREIGN KEY (`id_faculty`) REFERENCES `faculties` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -373,6 +452,38 @@ LOCK TABLES `students_courses_registrations` WRITE;
 /*!40000 ALTER TABLE `students_courses_registrations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `students_courses_registrations` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `api_token` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`),
+  UNIQUE KEY `users_api_token_unique` (`api_token`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Administrator','admin@test.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(2,'Antonietta Will','lemke.lucy@yahoo.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(3,'Nona Tillman','pkling@hotmail.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(4,'Prof. Dan Bradtke IV','camille.schuppe@gmail.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(5,'Gaston Hand','kameron.yundt@considine.net','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(6,'Mable Huels','smith.lilian@gottlieb.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(7,'Vern Wiza PhD','lilliana13@yahoo.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(8,'Gregg Erdman','charlotte.kerluke@hotmail.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(9,'Tito Kunze','mcclure.eino@hotmail.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(10,'Willard Rippin Sr.','rosa.stoltenberg@gmail.com','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL),(11,'Ephraim Jerde','bradly92@zemlak.net','$2y$10$w3Z2mzvYAdGi1y3r.4J33ueX924eVij7FnpUez/t0qCcFRokWgUAm',NULL,'2019-03-18 23:14:56','2019-03-18 23:14:56',NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -383,4 +494,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-18 10:55:24
+-- Dump completed on 2019-03-18 15:36:28

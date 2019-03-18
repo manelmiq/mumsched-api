@@ -57,7 +57,7 @@ class StudentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Students  $students
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Students $students)
