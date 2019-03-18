@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Sections;
 
 use Illuminate\Http\Request;
 use App\Services\SectionsService as SectionService;
-use App\Sections;
 
 
 class SectionsController extends Controller
@@ -18,8 +18,15 @@ class SectionsController extends Controller
         $this->$sectionsService = $sectionsService;
     }
 
+
+//    public function __construct(SectionService $sectionsService)
+//    {
+//        $this->$sectionsService = $sectionsService;
+//    }
+
     public function index()
     {
+//        return $this->sectionsService->index();
         return $this->sectionsService->index();
     }
 
