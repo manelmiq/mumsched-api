@@ -39,4 +39,11 @@ class EntriesController extends Controller
     {
         return $this->entriesService->delete($entry);
     }
+
+    public function getStudents($id)
+    {
+//        dd($id);
+        return $this->entriesService->getStudents($id);
+    }
+
 }
