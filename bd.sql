@@ -137,9 +137,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`system_admins`
+-- Table `mydb`.`admins`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`system_admins` (
+CREATE TABLE IF NOT EXISTS `mydb`.`admins` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
@@ -202,9 +202,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`pre_requisits`
+-- Table `mydb`.`prerequisites`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`pre_requisits` (
+CREATE TABLE IF NOT EXISTS `mydb`.`prerequisites` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_course` INT NOT NULL,
   `code` VARCHAR(45) NOT NULL,
