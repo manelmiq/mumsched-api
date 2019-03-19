@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\StudentsService;
+use App\StudentBlocks;
 use Illuminate\Http\Request;
 use App\Students;
 
@@ -47,19 +48,10 @@ class StudentsController extends Controller
         return $this->studentsService->store($request);
     }
 
-
     public function show($id)
     {
         return $this->studentsService->show($id);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Students  $students
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Students $students)
     {
         return $this->studentsService->update($request, $students);
@@ -69,4 +61,15 @@ class StudentsController extends Controller
     {
         return $this->studentsService->delete($students);
     }
+
+    public function getBlocks($blocks)
+    {
+        return $this->studentsService->getBlocks($blocks);
+    }
+
+    public function getCoursesAvailable($students){
+        return $this->studentsService->getBlocksinSection($students);
+    }
+
+
 }
