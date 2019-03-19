@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Courses extends Model
 {
-    protected $fillable = ['code', 'name', 'description', 'course_level', 'on_campus', 'update_at', 'created_at'];
+    protected $fillable = ['code', 'name', 'description', 'course_level', 'on_campus'];
+
+    public function prerequisites()
+    {
+        return $this->hasMany('App\Prerequisites', 'id_course');
+    }
 }
