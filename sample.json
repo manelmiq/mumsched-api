@@ -1,0 +1,29 @@
+[{
+  "description": "April 2019",
+  "courses": [
+    {
+      "courseCode": "CS201",
+      "courseName": "MPP",
+      "professor": "Lerman",
+      "capacity": 30,
+      "enrolled": 23,
+      "seatsAvailable": 7
+    },
+    {
+      "courseCode": "CS201",
+      "courseName": "MPP",
+      "professor": "Lerman",
+      "capacity": 30,
+      "enrolled": 23,
+      "seatsAvailable": 7
+    },
+    {
+      "courseCode": "CS201",
+      "courseName": "MPP",
+      "professor": "Lerman",
+      "capacity": 30,
+      "enrolled": 23,
+      "seatsAvailable": 7
+    }
+  ]
+}]

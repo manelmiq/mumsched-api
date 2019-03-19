@@ -8,6 +8,7 @@ class Faculties extends Model
 {
     protected $fillable = ['firstName', 'lastName' , 'email', 'password'];
 
+
     public function coursePreferences()
     {
         return $this->belongsToMany(
@@ -16,4 +17,5 @@ class Faculties extends Model
             'id_faculty',
             'id_course');
     }
+
 }
