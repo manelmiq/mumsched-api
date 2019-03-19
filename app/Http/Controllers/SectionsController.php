@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Services\SectionsService;
 use Illuminate\Http\Request;
-use App\Services\SectionsService as SectionService;
+
 use App\Sections;
+
 
 
 class SectionsController extends Controller
@@ -13,9 +14,9 @@ class SectionsController extends Controller
 
     protected $sectionsService;
 
-    public function __construct(SectionService $sectionsService)
+    public function __construct(SectionsService $sectionsService)
     {
-        $this->$sectionsService = $sectionsService;
+        $this->sectionsService = $sectionsService;
     }
 
     public function index()
@@ -23,18 +24,29 @@ class SectionsController extends Controller
         return $this->sectionsService->index();
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         return $this->sectionsService->store($request);
     }
 
-    public function update(Request $request, Sections $section)
+    public function show($id)
     {
-        return $this->sectionsService->update($request, $section);
+        return $this->sectionsService->show($id);
     }
 
-    public function delete(Sections $section)
+    public function update(Request $request, Sections $sections)
     {
-        return $this->sectionsService->delete($section);
+        return $this->sectionsService->update($request, $sections);
+    }
+
+    public function delete(Sections $sections)
+    {
+        return $this->sectionsService->delete($sections);
     }
 }

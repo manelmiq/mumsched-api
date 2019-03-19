@@ -41,7 +41,7 @@ class AdminsController extends Controller
     }
 
     public function login(Request $request){
-        $admin = Admins::select('id', 'name', 'email')
+        $admin = Admins::select('id', 'firstName','lastName', 'email')
             ->where([
                 ['email', '=', $request->input('email')],
                 ['password', '=', $request->input('password')],

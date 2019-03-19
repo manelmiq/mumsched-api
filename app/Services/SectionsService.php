@@ -25,7 +25,6 @@ class SectionsService
     public function store(Request $request)
     {
         $sections = Sections::create($request->all());
-//        dd($sections);
         return response()->json($sections);
     }
 

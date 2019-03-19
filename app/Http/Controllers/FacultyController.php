@@ -41,7 +41,7 @@ class FacultyController extends Controller
     }
 
     public function login(Request $request){
-        $faculty = Faculties::select('id', 'name', 'email')
+        $faculty = Faculties::select('id', 'firstName','lastName', 'email')
             ->where([
                 ['email', '=', $request->input('email')],
                 ['password', '=', $request->input('password')],
