@@ -63,6 +63,7 @@ Route::get('courses/{course}', 'CoursesController@show');
 Route::post('courses', 'CoursesController@store');
 Route::put('courses/{course}', 'CoursesController@update');
 Route::delete('courses/{course}', 'CoursesController@delete');
+Route::get('courses/{course}/prerequisites', 'CoursesController@getAllPrerequisites');
 
 //=================Faculty Routes===========================
 Route::get('faculty', 'FacultyController@index');
@@ -92,7 +93,6 @@ Route::get('admins/{admin}', 'AdminsController@show');
 Route::post('admins', 'AdminsController@store');
 Route::put('admins/{admin}', 'AdminsController@update');
 Route::delete('admins/{admin}', 'AdminsController@delete');
-
 
 //==================== Sections Routes ======================
 Route::get('sections', 'SectionsController@index');

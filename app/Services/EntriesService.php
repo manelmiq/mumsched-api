@@ -40,9 +40,9 @@ class EntriesService
         return response()->json(null, 204);
     }
 
-    public function getStudents($id)
+    public function getStudents($entryId)
     {
 //        return Students::where('id_entry', $id)->get();
-        return Entries::find($id)->students()->get();
+        return Entries::find($entryId)->students()->get();
     }
 }

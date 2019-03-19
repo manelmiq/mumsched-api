@@ -39,4 +39,9 @@ class CoursesController extends Controller
     {
         return $this->coursesService->delete($course);
     }
+
+    public function getAllPrerequisites($courseId) {
+
+        return $this->coursesService->getAllPrerequisites($courseId);
+    }
 }
