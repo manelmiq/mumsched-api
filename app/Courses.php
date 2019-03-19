@@ -12,4 +12,13 @@ class Courses extends Model
     {
         return $this->hasMany('App\Prerequisites', 'id_course');
     }
+
+    public function facultyPreferences()
+    {
+        return $this->belongsToMany(
+            'App\Faculties',
+            'Faculty_Courses_Preferences',
+            'id_course',
+            'id_faculty');
+    }
 }
