@@ -64,6 +64,7 @@ Route::post('courses', 'CoursesController@store');
 Route::put('courses/{course}', 'CoursesController@update');
 Route::delete('courses/{course}', 'CoursesController@delete');
 Route::get('courses/{course}/prerequisites', 'CoursesController@getAllPrerequisites');
+Route::get('courses/{course}/facultypreferences', 'CoursesController@getFacultyPreferences');
 
 //=================Faculty Routes===========================
 Route::get('faculty', 'FacultyController@index');
@@ -71,6 +72,9 @@ Route::get('faculty/{faculty}', 'FacultyController@show');
 Route::post('faculty', 'FacultyController@store');
 Route::put('faculty/{faculty}', 'FacultyController@update');
 Route::delete('faculty/{faculty}', 'FacultyController@delete');
+Route::get('faculty/{faculty}/coursepreferences', 'FacultyController@getCoursePreferences');
+Route::put('faculty/{faculty}/coursepreferences', 'FacultyController@updateCoursePreferences');
+Route::post('faculty/{faculty}/coursepreferences', 'FacultyController@storeCoursePreferences');
 
 //=================Blocks Routes===========================
 Route::get('blocks', 'BlocksController@index');
