@@ -30,6 +30,7 @@ Route::get('students/{students}/blocks', 'StudentsController@getBlocks');
 Route::get('students/{student}/all_blocks', 'StudentsController@getAllBlocks');
 Route::put('students/{student}/all_blocks', 'StudentsController@updateAllBlocks');
 Route::get('students/{students}/courses_available', 'StudentsController@getCoursesAvailable');
+Route::get('students/{student}/schedule', 'StudentsController@getSchedule');
 
 //=================Course Routes===========================
 Route::get('courses', 'CoursesController@index');
@@ -51,7 +52,9 @@ Route::post('faculty/{faculty}/coursepreferences', 'FacultyController@storeCours
 Route::get('faculty/{faculty}/blockpreferences', 'FacultyController@getBlockPreferences');
 Route::put('faculty/{faculty}/blockpreferences', 'FacultyController@updateBlockPreferences');
 Route::post('faculty/{faculty}/blockpreferences', 'FacultyController@storeBlockPreferences');
-Route::get('faculty/{faculty}/schedules', 'FacultyController@getCoursesScheduled');
+Route::get('faculty/{faculty}/
+
+es', 'FacultyController@getCoursesScheduled');
 
 //=================Blocks Routes===========================
 Route::get('blocks', 'BlocksController@index');

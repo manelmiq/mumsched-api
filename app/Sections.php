@@ -11,18 +11,18 @@ class Sections extends Model
 
     public function block()
     {
-        return $this->hasOne('App\Block', 'id_block');
+        return $this->belongsTo('App\Blocks', 'id_block');
     }
 
 
     public function course()
     {
-        return $this->hasOne('App\Course', 'id_course');
+        return $this->belongsTo('App\Courses', 'id_course');
     }
 
 
     public function faculty()
     {
-        return $this->hasOne('App\Faculties', 'id_faculty' );
+        return $this->belongsTo('App\Faculties', 'id_faculty' );
     }
 }
