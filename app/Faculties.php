@@ -27,4 +27,22 @@ class Faculties extends Model
             'id_block');
     }
 
+    public function coursesScheduled()
+    {
+        return $this->belongsToMany(
+            'App\Courses',
+            'sections',
+            'id_faculty',
+            'id_course');
+    }
+
+    public function blocksScheduled()
+    {
+        return $this->belongsToMany(
+            'App\Blocks',
+            'sections',
+            'id_faculty',
+            'id_block');
+    }
+
 }
