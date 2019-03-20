@@ -50,8 +50,8 @@ class StudentBlocksController extends Controller
         return $this->studentsBlocksService->update($request, $blocks);
     }
 
-    public function delete(StudentBlocks $studentsBlock)
+    public function delete(StudentBlocks $blocks )
     {
-        return $this->studentsBlocksService->delete($studentsBlock);
+        return $this->studentsBlocksService->delete($blocks);
     }
 }
