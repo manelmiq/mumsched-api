@@ -34,7 +34,6 @@ class StudentsBlocksService
 
     public function update(Request $request, StudentBlocks $studentBlocks)
     {
-//        dd($request);
         $studentBlocks->update($request->all());
         return response()->json($studentBlocks);
     }
