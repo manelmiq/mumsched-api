@@ -52,77 +52,74 @@ Route::delete('articles/{article}', 'ArticleController@delete');
 
 
 Route::get('students', 'StudentsController@index');
-Route::get('students/{student_id}', 'StudentsController@show');
+Route::get('students/{students}', 'StudentsController@show');
 Route::post('students', 'StudentsController@store');
 Route::put('students/{students}', 'StudentsController@update');
-Route::delete('students/{student_id}', 'StudentsController@delete');
-Route::get('students/{student_id}/blocks', 'StudentsController@getBlocks');
-Route::get('students/{student_id}/courses_available', 'StudentsController@getCoursesAvailable');
+Route::delete('students/{students}', 'StudentsController@delete');
+Route::get('students/{students}/blocks', 'StudentsController@getBlocks');
+Route::get('students/{students}/courses_available', 'StudentsController@getCoursesAvailable');
 
 
 //=================Course Routes===========================
 Route::get('courses', 'CoursesController@index');
-Route::get('courses/{course_id}', 'CoursesController@show');
+Route::get('courses/{course}', 'CoursesController@show');
 Route::post('courses', 'CoursesController@store');
-Route::put('courses/{course_id}', 'CoursesController@update');
-Route::delete('courses/{course_id}', 'CoursesController@delete');
-Route::get('courses/{course_id}/prerequisites', 'CoursesController@getAllPrerequisites');
-Route::get('courses/{course_id}/facultypreferences', 'CoursesController@getFacultyPreferences');
+Route::put('courses/{course}', 'CoursesController@update');
+Route::delete('courses/{course}', 'CoursesController@delete');
+Route::get('courses/{course}/prerequisites', 'CoursesController@getAllPrerequisites');
 
 //=================Faculty Routes===========================
 Route::get('faculty', 'FacultyController@index');
-Route::get('faculty/{faculty_id}', 'FacultyController@show');
+Route::get('faculty/{faculty}', 'FacultyController@show');
 Route::post('faculty', 'FacultyController@store');
-Route::put('faculty/{faculty_id}', 'FacultyController@update');
-Route::delete('faculty/{faculty_id}', 'FacultyController@delete');
-Route::get('faculty/{faculty_id}/coursepreferences', 'FacultyController@getCoursePreferences');
-Route::put('faculty/{faculty_id}/coursepreferences', 'FacultyController@updateCoursePreferences');
-Route::post('faculty/{faculty_id}/coursepreferences', 'FacultyController@storeCoursePreferences');
+Route::put('faculty/{faculty}', 'FacultyController@update');
+Route::delete('faculty/{faculty}', 'FacultyController@delete');
 
 //=================Blocks Routes===========================
 Route::get('blocks', 'BlocksController@index');
-Route::get('blocks/{block_id}', 'BlocksController@show');
+Route::get('blocks/{block}', 'BlocksController@show');
 Route::post('blocks', 'BlocksController@store');
-Route::put('blocks/{block_id}', 'BlocksController@update');
-Route::delete('blocks/{block_id}', 'BlocksController@delete');
+Route::put('blocks/{block}', 'BlocksController@update');
+Route::delete('blocks/{block}', 'BlocksController@delete');
 
 //=================Entries Routes===========================
 Route::get('entries', 'EntriesController@index');
-Route::get('entries/{entry_id}', 'EntriesController@show');
+Route::get('entries/{entry}', 'EntriesController@show');
 Route::post('entries', 'EntriesController@store');
-Route::put('entries/{entry_id}', 'EntriesController@update');
-Route::delete('entries/{entry_id}', 'EntriesController@delete');
-Route::get('entries/{entry_id}/students', 'EntriesController@getStudents');
+Route::put('entries/{entry}', 'EntriesController@update');
+Route::delete('entries/{entry}', 'EntriesController@delete');
+Route::get('entries/{entry}/students', 'EntriesController@getStudents');
 
 //=================Admins Routes===========================
 Route::get('admins', 'AdminsController@index');
-Route::get('admins/{admin_id}', 'AdminsController@show');
+Route::get('admins/{admin}', 'AdminsController@show');
 Route::post('admins', 'AdminsController@store');
-Route::put('admins/{admin_id}', 'AdminsController@update');
-Route::delete('admins/{admin_id}', 'AdminsController@delete');
+Route::put('admins/{admin}', 'AdminsController@update');
+Route::delete('admins/{admin}', 'AdminsController@delete');
 
 //==================== Sections Routes ======================
 Route::get('sections', 'SectionsController@index');
-Route::get('sections/{section_id}', 'SectionsController@show');
+Route::get('sections/{sections}', 'SectionsController@show');
 Route::post('sections', 'SectionsController@store');
-Route::put('sections/{section_id}', 'SectionsController@update');
-Route::delete('sections/{section_id}', 'SectionsController@delete');
+Route::put('sections/{sections}', 'SectionsController@update');
+Route::delete('sections/{sections}', 'SectionsController@delete');
 
 
 //==================== Students Courses Registration Routes ======================
 Route::get('registrations', 'StudentCourseRegistrationController@index');
-Route::get('registrations/{registration_id}', 'StudentCourseRegistrationController@show');
+Route::get('registrations/{registration}', 'StudentCourseRegistrationController@show');
 Route::post('registrations', 'StudentCourseRegistrationController@store');
-Route::put('registrations/{registration_id}', 'StudentCourseRegistrationController@update');
-Route::delete('registrations/{registration_id}', 'StudentCourseRegistrationController@delete');
+Route::put('registrations/{registrations}', 'StudentCourseRegistrationController@update');
+Route::delete('registrations/{registration}', 'StudentCourseRegistrationController@delete');
 
 
 //==================== StudentsBlocks  Routes ======================
 Route::get('students_blocks', 'StudentBlocksController@index');
-Route::get('students_blocks/{block_id}', 'StudentBlocksController@show');
+Route::get('students_blocks/{blocks}', 'StudentBlocksController@show');
 Route::post('students_blocks', 'StudentBlocksController@store');
-Route::put('students_blocks/{block_id}', 'StudentBlocksController@update');
-Route::delete('students_blocks/{block_id}', 'StudentBlocksController@delete');
+Route::put('students_blocks/{blocks}', 'StudentBlocksController@update');
+Route::delete('students_blocks/{blocks}', 'StudentBlocksController@delete');
+
 
 
 
