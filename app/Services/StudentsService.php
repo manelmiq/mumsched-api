@@ -210,7 +210,8 @@ class StudentsService
 //                continue;
 //                var_dump($courses['block_id']);
                 $tobeAdd = true;
-                if (in_array($coursesArrayFormat['block_id'], $blocksRegister)) {
+                if (in_array($coursesArrayFormat['block_id'], $blocksRegister)
+                 || $coursesArrayFormat['seats_available'] == 0                ) {
 //                    echo "need to be deleted";
 //                    $coursesArrayFormat['toBeDeleted'] = true;
                     $tobeAdd = false;
