@@ -65,4 +65,16 @@ class FacultyController extends Controller
         return $this->facultyService->updateCoursePreferences($request, $faculty);
     }
 
+    public function getBlockPreferences($facultyId) {
+        return $this->facultyService->getBlockPreferences($facultyId);
+    }
+
+    public function storeBlockPreferences(Request $request, Faculties $faculty) {
+        return $this->facultyService->storeBlockPreferences($request, $faculty);
+    }
+
+    public function updateBlockPreferences(Request $request, Faculties $faculty) {
+        return $this->facultyService->updateBlockPreferences($request, $faculty);
+    }
+
 }

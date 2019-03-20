@@ -8,6 +8,7 @@
 
 namespace App\Services;
 
+use App\Blocks;
 use App\Courses;
 use App\Faculties;
 use Illuminate\Http\Request;
@@ -99,6 +100,64 @@ class FacultyService
         $faculty->coursePreferences()->sync($request['courses_id']);
 
         return $this->getCoursePreferences($faculty->id);
+
+    }
+
+
+    public function getBlockPreferences($facultyId) {
+        $blockPreferences = Faculties::find($facultyId)->blockPreferences()->get();
+        $blocks = Blocks::all();
+
+        if ($blocks == null or count($blocks) == 0) {
+            $response['faculty_id'] = $facultyId;
+            $response['blocks'] = null;
+            return response()->json($response);
+        }
+
+        if ($blockPreferences == null or count($blockPreferences) == 0) {
+            foreach ($blocks as $block) {
+                $block->isPreference = false;
+            }
+            $response['faculty_id'] = $facultyId;
+            $response['blocks'] = $blocks;
+            return response()->json($response);
+        }
+
+        foreach ($blocks as $block) {
+            foreach ($blockPreferences as $preference) {
+                if ($block->id == $preference->id) {
+                    $block->isPreference = true;
+                    break;
+                } else {
+                    $block->isPreference = false;
+                }
+            }
+        }
+
+        $response['faculty_id'] = $facultyId;
+        $response['blocks'] = $blocks;
+        return response()->json($response);
+    }
+
+    public function storeBlockPreferences(Request $request, Faculties $faculty) {
+
+        if ($request == null or !$request->has('blocks_id')) {
+            return $this->getBlockPreferences($faculty->id);
+        }
+
+        foreach ($request['blocks_id'] as $blockId) {
+            $block = Blocks::find($blockId);
+            $faculty->blockPreferences()->save($block);
+        }
+
+        return $this->getBlockPreferences($faculty->id);
+    }
+
+    public function updateBlockPreferences(Request $request, Faculties $faculty) {
+
+        $faculty->blockPreferences()->sync($request['blocks_id']);
+
+        return $this->getBlockPreferences($faculty->id);
 
     }
 
