@@ -78,6 +78,9 @@ Route::delete('faculty/{faculty}', 'FacultyController@delete');
 Route::get('faculty/{faculty}/coursepreferences', 'FacultyController@getCoursePreferences');
 Route::put('faculty/{faculty}/coursepreferences', 'FacultyController@updateCoursePreferences');
 Route::post('faculty/{faculty}/coursepreferences', 'FacultyController@storeCoursePreferences');
+Route::get('faculty/{faculty}/blockpreferences', 'FacultyController@getBlockPreferences');
+Route::put('faculty/{faculty}/blockpreferences', 'FacultyController@updateBlockPreferences');
+Route::post('faculty/{faculty}/blockpreferences', 'FacultyController@storeBlockPreferences');
 
 //=================Blocks Routes===========================
 Route::get('blocks', 'BlocksController@index');

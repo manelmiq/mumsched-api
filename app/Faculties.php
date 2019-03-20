@@ -18,4 +18,13 @@ class Faculties extends Model
             'id_course');
     }
 
+    public function blockPreferences()
+    {
+        return $this->belongsToMany(
+            'App\Blocks',
+            'faculty_blocks_preferences',
+            'id_faculty',
+            'id_block');
+    }
+
 }
