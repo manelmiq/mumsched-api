@@ -53,6 +53,42 @@ class StudentsService
         return StudentBlocks::where('id_student', '=', $student)->get();
     }
 
+    public function getAllBlocks($student)
+    {
+        $allBLocks = Blocks::all()->toArray();
+        $studentBlocks = StudentBlocks::where('id_student', '=', $student)->get()->toArray();
+
+        $response = [];
+        foreach ($allBLocks as $block) {
+            foreach ($studentBlocks as $studentBlock) {
+                if ($block['id'] == $studentBlock['id_block']) {
+                        $block['isAssigned'] = true;
+                        break;
+                    } else {
+                        $block['isAssigned'] = false;
+                    }
+            }
+
+            if (!count($studentBlocks)) {
+                $block['isAssigned'] = false;
+            }
+
+            array_push($response, $block);
+        }
+
+        return $response;
+    }
+
+    public function updateAllBlocks($student, $blocks)
+    {
+        StudentBlocks::where('id_student', '=', $student)->delete();
+        foreach ($blocks->id_blocks as $block) {
+            StudentBlocks::create(['id_student' => $student, 'id_block' => $block]);
+        }
+
+        return StudentBlocks::where('id_student', '=', $student)->get()->toArray();
+    }
+
     public function getBlocksinSection($student)
     {
         $courses =

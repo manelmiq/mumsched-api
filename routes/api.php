@@ -13,50 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-//Route::post('login', 'Auth\LoginController@login');
-//Route::post('logout', 'Auth\LoginController@logout');
-//Route::post('register', 'Auth\RegisterController@register');
-
+//=================Logins Routes===========================
 Route::prefix('login')->group(function () {
     Route::post('student', 'StudentsController@login');
     Route::post('admin', 'AdminsController@login');
     Route::post('faculty', 'FacultyController@login');
 });
 
-
-Route::post('logout', 'Auth\LoginController@logout');
-Route::post('register', 'Auth\RegisterController@register');
-
-
-Route::get('articles', 'ArticleController@index');
-Route::get('articles/{article}', 'ArticleController@show');
-Route::post('articles', 'ArticleController@store');
-Route::put('articles/{article}', 'ArticleController@update');
-Route::delete('articles/{article}', 'ArticleController@delete');
-
-
-
-
-Route::get('articles', 'ArticleController@index');
-Route::get('articles/{article}', 'ArticleController@show');
-Route::post('articles', 'ArticleController@store');
-Route::put('articles/{article}', 'ArticleController@update');
-Route::delete('articles/{article}', 'ArticleController@delete');
-
-//=================Student Routes===========================
+//=================Students Routes===========================
 Route::get('students', 'StudentsController@index');
 Route::get('students/{students}', 'StudentsController@show');
 Route::post('students', 'StudentsController@store');
 Route::put('students/{students}', 'StudentsController@update');
 Route::delete('students/{students}', 'StudentsController@delete');
 Route::get('students/{students}/blocks', 'StudentsController@getBlocks');
+Route::get('students/{student}/all_blocks', 'StudentsController@getAllBlocks');
+Route::put('students/{student}/all_blocks', 'StudentsController@updateAllBlocks');
 Route::get('students/{students}/courses_available', 'StudentsController@getCoursesAvailable');
 Route::get('students/{student}/schedule', 'StudentsController@getSchedule');
-
 
 //=================Course Routes===========================
 Route::get('courses', 'CoursesController@index');
@@ -65,7 +39,6 @@ Route::post('courses', 'CoursesController@store');
 Route::put('courses/{course}', 'CoursesController@update');
 Route::delete('courses/{course}', 'CoursesController@delete');
 Route::get('courses/{course}/prerequisites', 'CoursesController@getAllPrerequisites');
-Route::get('courses/{course}/facultypreferences', 'CoursesController@getFacultyPreferences');
 
 //=================Faculty Routes===========================
 Route::get('faculty', 'FacultyController@index');
@@ -79,7 +52,9 @@ Route::post('faculty/{faculty}/coursepreferences', 'FacultyController@storeCours
 Route::get('faculty/{faculty}/blockpreferences', 'FacultyController@getBlockPreferences');
 Route::put('faculty/{faculty}/blockpreferences', 'FacultyController@updateBlockPreferences');
 Route::post('faculty/{faculty}/blockpreferences', 'FacultyController@storeBlockPreferences');
-Route::get('faculty/{faculty}/schedules', 'FacultyController@getCoursesScheduled');
+Route::get('faculty/{faculty}/
+
+es', 'FacultyController@getCoursesScheduled');
 
 //=================Blocks Routes===========================
 Route::get('blocks', 'BlocksController@index');
@@ -124,13 +99,3 @@ Route::post('students_blocks', 'StudentBlocksController@store');
 Route::put('students_blocks/{blocks}', 'StudentBlocksController@update');
 Route::delete('students_blocks/{blocks}', 'StudentBlocksController@delete');
 
-
-
-
-
-//php artisan make:controller PhotoController --resource
-
-
-Route::group(['middleware' => 'auth:api'], function() {
-
-});
