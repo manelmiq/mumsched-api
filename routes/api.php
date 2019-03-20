@@ -30,6 +30,7 @@ Route::get('students/{students}/blocks', 'StudentsController@getBlocks');
 Route::get('students/{student}/all_blocks', 'StudentsController@getAllBlocks');
 Route::put('students/{student}/all_blocks', 'StudentsController@updateAllBlocks');
 Route::get('students/{students}/courses_available', 'StudentsController@getCoursesAvailable');
+Route::get('students/{students}/registration', 'StudentsController@registration');
 Route::get('students/{student}/schedule', 'StudentsController@getSchedule');
 
 //=================Course Routes===========================
