@@ -77,4 +77,8 @@ class FacultyController extends Controller
         return $this->facultyService->updateBlockPreferences($request, $faculty);
     }
 
+    public function getCoursesScheduled(Faculties $faculty) {
+        return $this->facultyService->getCoursesScheduled($faculty);
+    }
+
 }

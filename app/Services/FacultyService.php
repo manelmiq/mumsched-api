@@ -161,4 +161,18 @@ class FacultyService
 
     }
 
+    public function getCoursesScheduled(Faculties $faculty) {
+        $courses = $faculty->coursesScheduled()->get();
+        $blocks = $faculty->blocksScheduled()->get();
+
+
+        for ($i = 0; $i < count($courses); $i++) {
+            $courses[$i]->start_date = $blocks[$i]->start_date;
+            $courses[$i]->end_date = $blocks[$i]->end_date;
+            $courses[$i]->block_description = $blocks[$i]->description;
+        }
+
+        return $courses;
+
+    }
 }
