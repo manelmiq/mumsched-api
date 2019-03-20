@@ -7,6 +7,8 @@
  */
 
 namespace App\Services;
+use App\Blocks;
+use App\Courses;
 use Illuminate\Http\Request;
 use App\Sections;
 
@@ -38,6 +40,30 @@ class SectionsService
     {
         $sections->delete();
         return response()->json(null, 204);
+    }
+
+    public function getAllFacultiesPreferences(Blocks $block, Courses $course)
+    {
+        $facultyCoursePreferences =  $course->facultyPreferences()->get();
+        $facultyBlockPreferences = $block->facultyPreferences()->get();
+
+        if ($facultyCoursePreferences == null or count($facultyCoursePreferences) == 0 or
+            $facultyBlockPreferences == null or count($facultyBlockPreferences) == 0) {
+            return;
+        }
+
+        $faculties = array();
+        $i = 0;
+        foreach ($facultyBlockPreferences as $blockPreference) {
+            foreach ($facultyCoursePreferences as $coursePreference) {
+                if ($coursePreference->id == $blockPreference->id) {
+                    $faculties[$i] = $coursePreference;   //get the whole obj faculty
+                    $i++;
+                }
+            }
+        }
+
+        return $faculties;
     }
 
 }

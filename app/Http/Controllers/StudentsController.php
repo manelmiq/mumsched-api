@@ -68,12 +68,29 @@ class StudentsController extends Controller
         return $this->studentsService->getBlocks($blocks);
     }
 
+    public function getAllBlocks($student)
+    {
+        return $this->studentsService->getAllBlocks($student);
+    }
+
+    public function updateAllBlocks($student, Request $blocks)
+    {
+        return $this->studentsService->updateAllBlocks($student, $blocks);
+    }
+
     public function getCoursesAvailable($students){
         return $this->studentsService->getBlocksinSection($students);
     }
 
-    public function registration($students){
+
+    public function registration($students)
+    {
         return $this->studentsService->registration($students);
+    }
+
+    public function getSchedule(Students $student){
+        return $this->studentsService->getSchedule($student);
+
     }
 
 

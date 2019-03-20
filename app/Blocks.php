@@ -12,8 +12,9 @@ class Blocks extends Model
     {
         return $this->belongsToMany(
             'App\Faculties',
-            'faculty_courses_preferences',
+            'faculty_blocks_preferences',
             'id_block',
             'id_faculty');
     }
+
 }

@@ -8,6 +8,7 @@
 
 namespace App\Services;
 
+use App\Sections;
 use App\StudentBlocks;
 use App\Students;
 use Illuminate\Http\Request;
@@ -50,6 +51,43 @@ class StudentsService
     public function getBlocks($student)
     {
         return StudentBlocks::where('id_student', '=', $student)->get();
+    }
+
+
+    public function getAllBlocks($student)
+    {
+        $allBLocks = Blocks::all()->toArray();
+        $studentBlocks = StudentBlocks::where('id_student', '=', $student)->get()->toArray();
+
+        $response = [];
+        foreach ($allBLocks as $block) {
+            foreach ($studentBlocks as $studentBlock) {
+                if ($block['id'] == $studentBlock['id_block']) {
+                        $block['isAssigned'] = true;
+                        break;
+                    } else {
+                        $block['isAssigned'] = false;
+                    }
+            }
+
+            if (!count($studentBlocks)) {
+                $block['isAssigned'] = false;
+            }
+
+            array_push($response, $block);
+        }
+
+        return $response;
+    }
+
+    public function updateAllBlocks($student, $blocks)
+    {
+        StudentBlocks::where('id_student', '=', $student)->delete();
+        foreach ($blocks->id_blocks as $block) {
+            StudentBlocks::create(['id_student' => $student, 'id_block' => $block]);
+        }
+
+        return StudentBlocks::where('id_student', '=', $student)->get()->toArray();
     }
 
     public function getBlocksinSection($students)
@@ -159,7 +197,7 @@ class StudentsService
             array_push($blocksRegister, $registration['id_block']);
         }
 //        var_dump($coursesAvailables);
-        $index  = 0;
+        $index = 0;
         foreach ($coursesAvailables as $coursesAvailableList) {
             $coursesAvailableList = json_decode(json_encode($coursesAvailableList), true);
 //            var_dump($coursesAvailableList);
@@ -177,13 +215,41 @@ class StudentsService
 //                    $coursesArrayFormat['toBeDeleted'] = true;
                     $tobeAdd = false;
                 }
-                if($tobeAdd){
-                    array_push($coursesAvailablesFilter[$index]['courses'], $coursesArrayFormat );
+                if ($tobeAdd) {
+                    array_push($coursesAvailablesFilter[$index]['courses'], $coursesArrayFormat);
                 }
             }
             $index++;
         }
         return response()->json($coursesAvailablesFilter, 200);
+    }
+
+
+    public function getSchedule(Students $student){
+         $sections = $student->sectionsScheduled()->get();
+
+         $response = array();
+         for ($i = 0; $i < count($sections); $i++) {
+             $block = $sections[$i]->block()->get();
+             $faculty = $sections[$i]->faculty()->get();
+             $course = $sections[$i]->course()->get();
+
+             $response[$i]['block_id'] = $block[0]->id;
+             $response[$i]['start_date'] = $block[0]->start_date;
+             $response[$i]['end_date'] = $block[0]->end_date;
+             $response[$i]['block_description'] = $block[0]->description;
+             $response[$i]['on_campus'] = $block[0]->on_campus;
+             $response[$i]['faculty_id'] = $faculty[0]->id;
+             $response[$i]['faculty_name'] = $faculty[0]->firstName.' '.$faculty[0]->lastName;
+             $response[$i]['faculty_email'] = $faculty[0]->email;
+             $response[$i]['course_id'] = $course[0]->id;
+             $response[$i]['course_code'] = $course[0]->code;
+             $response[$i]['course_name'] = $course[0]->name;
+             $response[$i]['course_description'] = $course[0]->description;
+             $response[$i]['course_level'] = $course[0]->course_level;
+         }
+
+         return $response;
 
     }
 

@@ -38,12 +38,10 @@ class StudentBlocksController extends Controller
         return $this->studentsBlocksService->store($request);
     }
 
-
     public function show($id)
     {
         return $this->studentsBlocksService->show($id);
     }
-
 
     public function update(Request $request, StudentBlocks $blocks)
     {
