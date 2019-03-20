@@ -47,7 +47,7 @@ Route::post('articles', 'ArticleController@store');
 Route::put('articles/{article}', 'ArticleController@update');
 Route::delete('articles/{article}', 'ArticleController@delete');
 
-
+//=================Student Routes===========================
 Route::get('students', 'StudentsController@index');
 Route::get('students/{students}', 'StudentsController@show');
 Route::post('students', 'StudentsController@store');
@@ -55,6 +55,7 @@ Route::put('students/{students}', 'StudentsController@update');
 Route::delete('students/{students}', 'StudentsController@delete');
 Route::get('students/{students}/blocks', 'StudentsController@getBlocks');
 Route::get('students/{students}/courses_available', 'StudentsController@getCoursesAvailable');
+Route::get('students/{student}/schedule', 'StudentsController@getSchedule');
 
 
 //=================Course Routes===========================

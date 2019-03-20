@@ -72,5 +72,9 @@ class StudentsController extends Controller
         return $this->studentsService->getBlocksinSection($students);
     }
 
+    public function getSchedule(Students $student){
+        return $this->studentsService->getSchedule($student);
+    }
+
 
 }
