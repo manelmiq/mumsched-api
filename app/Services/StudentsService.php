@@ -63,11 +63,11 @@ class StudentsService
         foreach ($allBLocks as $block) {
             foreach ($studentBlocks as $studentBlock) {
                 if ($block['id'] == $studentBlock['id_block']) {
-                        $block['isAssigned'] = true;
-                        break;
-                    } else {
-                        $block['isAssigned'] = false;
-                    }
+                    $block['isAssigned'] = true;
+                    break;
+                } else {
+                    $block['isAssigned'] = false;
+                }
             }
 
             if (!count($studentBlocks)) {
@@ -184,35 +184,26 @@ class StudentsService
             $arr['courses'] = $value;
             $arrayJson[] = $arr;
         }
-
         $arrayJson = json_decode(json_encode($arrayJson), true);
         $coursesAvailables = $arrayJson;
         $coursesAvailablesFilter = $arrayJson;
-
-        $sectionsRegistrations = Students::find($students)->sectionsRegistrations()->get();
+        $sectionsRegistrations = Students::find($students)->sectionsScheduled()->get();
         $sectionsRegistrations = json_decode(json_encode($sectionsRegistrations), true);
         $blocksRegister = array();
         foreach ($sectionsRegistrations as $registration) {
             $registration = json_decode(json_encode($registration), true);
             array_push($blocksRegister, $registration['id_block']);
         }
-//        var_dump($coursesAvailables);
+
         $index = 0;
         foreach ($coursesAvailables as $coursesAvailableList) {
             $coursesAvailableList = json_decode(json_encode($coursesAvailableList), true);
-//            var_dump($coursesAvailableList);
-//            continue;
-//            var_dump($blocksArray);
             $coursesAvailablesFilter[$index]['courses'] = [];
             foreach ($coursesAvailableList['courses'] as $courses) {
                 $coursesArrayFormat = json_decode(json_encode($courses), true);
-//                var_dump($coursesArrayFormat['block_id']);
-//                continue;
-//                var_dump($courses['block_id']);
                 $tobeAdd = true;
-                if (in_array($coursesArrayFormat['block_id'], $blocksRegister)) {
-//                    echo "need to be deleted";
-//                    $coursesArrayFormat['toBeDeleted'] = true;
+                if (in_array($coursesArrayFormat['block_id'], $blocksRegister)
+                    || $coursesArrayFormat['seats_available'] == 0) {
                     $tobeAdd = false;
                 }
                 if ($tobeAdd) {
@@ -225,31 +216,32 @@ class StudentsService
     }
 
 
-    public function getSchedule(Students $student){
-         $sections = $student->sectionsScheduled()->get();
+    public function getSchedule(Students $student)
+    {
+        $sections = $student->sectionsScheduled()->get();
 
-         $response = array();
-         for ($i = 0; $i < count($sections); $i++) {
-             $block = $sections[$i]->block()->get();
-             $faculty = $sections[$i]->faculty()->get();
-             $course = $sections[$i]->course()->get();
+        $response = array();
+        for ($i = 0; $i < count($sections); $i++) {
+            $block = $sections[$i]->block()->get();
+            $faculty = $sections[$i]->faculty()->get();
+            $course = $sections[$i]->course()->get();
 
-             $response[$i]['block_id'] = $block[0]->id;
-             $response[$i]['start_date'] = $block[0]->start_date;
-             $response[$i]['end_date'] = $block[0]->end_date;
-             $response[$i]['block_description'] = $block[0]->description;
-             $response[$i]['on_campus'] = $block[0]->on_campus;
-             $response[$i]['faculty_id'] = $faculty[0]->id;
-             $response[$i]['faculty_name'] = $faculty[0]->firstName.' '.$faculty[0]->lastName;
-             $response[$i]['faculty_email'] = $faculty[0]->email;
-             $response[$i]['course_id'] = $course[0]->id;
-             $response[$i]['course_code'] = $course[0]->code;
-             $response[$i]['course_name'] = $course[0]->name;
-             $response[$i]['course_description'] = $course[0]->description;
-             $response[$i]['course_level'] = $course[0]->course_level;
-         }
+            $response[$i]['block_id'] = $block[0]->id;
+            $response[$i]['start_date'] = $block[0]->start_date;
+            $response[$i]['end_date'] = $block[0]->end_date;
+            $response[$i]['block_description'] = $block[0]->description;
+            $response[$i]['on_campus'] = $block[0]->on_campus;
+            $response[$i]['faculty_id'] = $faculty[0]->id;
+            $response[$i]['faculty_name'] = $faculty[0]->firstName . ' ' . $faculty[0]->lastName;
+            $response[$i]['faculty_email'] = $faculty[0]->email;
+            $response[$i]['course_id'] = $course[0]->id;
+            $response[$i]['course_code'] = $course[0]->code;
+            $response[$i]['course_name'] = $course[0]->name;
+            $response[$i]['course_description'] = $course[0]->description;
+            $response[$i]['course_level'] = $course[0]->course_level;
+        }
 
-         return $response;
+        return $response;
 
     }
 
