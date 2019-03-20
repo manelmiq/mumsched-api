@@ -151,10 +151,11 @@ class StudentsService
              $response[$i]['block_description'] = $block[0]->description;
              $response[$i]['on_campus'] = $block[0]->on_campus;
              $response[$i]['faculty_id'] = $faculty[0]->id;
-             $response[$i]['faculty_name'] = $faculty[0]->name;
+             $response[$i]['faculty_name'] = $faculty[0]->firstName.' '.$faculty[0]->lastName;
              $response[$i]['faculty_email'] = $faculty[0]->email;
              $response[$i]['course_id'] = $course[0]->id;
              $response[$i]['course_code'] = $course[0]->code;
+             $response[$i]['course_name'] = $course[0]->name;
              $response[$i]['course_description'] = $course[0]->description;
              $response[$i]['course_level'] = $course[0]->course_level;
          }
