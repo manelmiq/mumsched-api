@@ -189,7 +189,7 @@ class StudentsService
         $coursesAvailables = $arrayJson;
         $coursesAvailablesFilter = $arrayJson;
 
-        $sectionsRegistrations = Students::find($students)->sectionsRegistrations()->get();
+        $sectionsRegistrations = Students::find($students)->sectionsScheduled()->get();
         $sectionsRegistrations = json_decode(json_encode($sectionsRegistrations), true);
         $blocksRegister = array();
         foreach ($sectionsRegistrations as $registration) {
