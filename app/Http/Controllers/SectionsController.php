@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Blocks;
+use App\Courses;
 use App\Services\SectionsService;
 use Illuminate\Http\Request;
 
@@ -48,5 +50,10 @@ class SectionsController extends Controller
     public function delete(Sections $sections)
     {
         return $this->sectionsService->delete($sections);
+    }
+
+    public function getAllFacultiesPreferences(Blocks $block, Courses $course)
+    {
+        return $this->sectionsService->getAllFacultiesPreferences($block, $course);
     }
 }

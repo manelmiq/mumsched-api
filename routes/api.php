@@ -82,6 +82,8 @@ Route::get('sections/{sections}', 'SectionsController@show');
 Route::post('sections', 'SectionsController@store');
 Route::put('sections/{sections}', 'SectionsController@update');
 Route::delete('sections/{sections}', 'SectionsController@delete');
+Route::get('sections/{block}/{course}/facultypreferences', 'SectionsController@getAllFacultiesPreferences');
+
 
 //==================== Students Courses Registration Routes ======================
 Route::get('registrations', 'StudentCourseRegistrationController@index');
