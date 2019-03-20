@@ -52,9 +52,7 @@ Route::post('faculty/{faculty}/coursepreferences', 'FacultyController@storeCours
 Route::get('faculty/{faculty}/blockpreferences', 'FacultyController@getBlockPreferences');
 Route::put('faculty/{faculty}/blockpreferences', 'FacultyController@updateBlockPreferences');
 Route::post('faculty/{faculty}/blockpreferences', 'FacultyController@storeBlockPreferences');
-Route::get('faculty/{faculty}/
-
-es', 'FacultyController@getCoursesScheduled');
+Route::get('faculty/{faculty}/schedules', 'FacultyController@getCoursesScheduled');
 
 //=================Blocks Routes===========================
 Route::get('blocks', 'BlocksController@index');
