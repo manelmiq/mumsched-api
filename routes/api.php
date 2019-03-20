@@ -28,8 +28,11 @@ Route::prefix('login')->group(function () {
 });
 
 
+
 Route::post('logout', 'Auth\LoginController@logout');
 Route::post('register', 'Auth\RegisterController@register');
+
+
 
 
 Route::get('articles', 'ArticleController@index');
@@ -55,6 +58,7 @@ Route::put('students/{students}', 'StudentsController@update');
 Route::delete('students/{students}', 'StudentsController@delete');
 Route::get('students/{students}/blocks', 'StudentsController@getBlocks');
 Route::get('students/{students}/courses_available', 'StudentsController@getCoursesAvailable');
+Route::get('students/{students}/registration', 'StudentsController@registration');
 
 
 //=================Course Routes===========================
@@ -64,7 +68,6 @@ Route::post('courses', 'CoursesController@store');
 Route::put('courses/{course}', 'CoursesController@update');
 Route::delete('courses/{course}', 'CoursesController@delete');
 Route::get('courses/{course}/prerequisites', 'CoursesController@getAllPrerequisites');
-Route::get('courses/{course}/facultypreferences', 'CoursesController@getFacultyPreferences');
 
 //=================Faculty Routes===========================
 Route::get('faculty', 'FacultyController@index');
@@ -72,13 +75,6 @@ Route::get('faculty/{faculty}', 'FacultyController@show');
 Route::post('faculty', 'FacultyController@store');
 Route::put('faculty/{faculty}', 'FacultyController@update');
 Route::delete('faculty/{faculty}', 'FacultyController@delete');
-Route::get('faculty/{faculty}/coursepreferences', 'FacultyController@getCoursePreferences');
-Route::put('faculty/{faculty}/coursepreferences', 'FacultyController@updateCoursePreferences');
-Route::post('faculty/{faculty}/coursepreferences', 'FacultyController@storeCoursePreferences');
-Route::get('faculty/{faculty}/blockpreferences', 'FacultyController@getBlockPreferences');
-Route::put('faculty/{faculty}/blockpreferences', 'FacultyController@updateBlockPreferences');
-Route::post('faculty/{faculty}/blockpreferences', 'FacultyController@storeBlockPreferences');
-Route::get('faculty/{faculty}/schedules', 'FacultyController@getCoursesScheduled');
 
 //=================Blocks Routes===========================
 Route::get('blocks', 'BlocksController@index');
@@ -109,6 +105,7 @@ Route::post('sections', 'SectionsController@store');
 Route::put('sections/{sections}', 'SectionsController@update');
 Route::delete('sections/{sections}', 'SectionsController@delete');
 
+
 //==================== Students Courses Registration Routes ======================
 Route::get('registrations', 'StudentCourseRegistrationController@index');
 Route::get('registrations/{registration}', 'StudentCourseRegistrationController@show');
@@ -116,12 +113,15 @@ Route::post('registrations', 'StudentCourseRegistrationController@store');
 Route::put('registrations/{registrations}', 'StudentCourseRegistrationController@update');
 Route::delete('registrations/{registration}', 'StudentCourseRegistrationController@delete');
 
+
 //==================== StudentsBlocks  Routes ======================
 Route::get('students_blocks', 'StudentBlocksController@index');
 Route::get('students_blocks/{blocks}', 'StudentBlocksController@show');
 Route::post('students_blocks', 'StudentBlocksController@store');
 Route::put('students_blocks/{blocks}', 'StudentBlocksController@update');
 Route::delete('students_blocks/{blocks}', 'StudentBlocksController@delete');
+
+
 
 
 

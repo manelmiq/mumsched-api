@@ -15,10 +15,12 @@ class StudentsCoursesRegistration extends Model
         return $this->belongsTo('App\Sections', 'id_section');
     }
 
-    public function student()
-    {
-        return $this->belongsTo('App\Students', 'id_student');
-    }
+
+//
+//    public function student()
+//    {
+//        return $this->belongsTo('App\Students', 'id_student');
+//    }
 
 
 }

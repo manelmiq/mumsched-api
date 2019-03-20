@@ -28,6 +28,8 @@ class StudentCourseRegistrationService
         return StudentsCoursesRegistration::find($id);
     }
 
+
+
     public function store(Request $request)
     {
         $student = StudentsCoursesRegistration::create($request->all());
