@@ -11,7 +11,7 @@ class Students extends Model
         'registration_number', 'starting_course'];
 
 
-    public function sectionsRegistrations()
+    public function sectionsScheduled()
     {
         return $this->belongsToMany(
             'App\Sections',
