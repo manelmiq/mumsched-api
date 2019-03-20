@@ -53,4 +53,28 @@ class FacultyController extends Controller
         return response()->json($response);
     }
 
+    public function getCoursePreferences($facultyId) {
+        return $this->facultyService->getCoursePreferences($facultyId);
+    }
+
+    public function storeCoursePreferences(Request $request, Faculties $faculty) {
+        return $this->facultyService->storeCoursePreferences($request, $faculty);
+    }
+
+    public function updateCoursePreferences(Request $request, Faculties $faculty) {
+        return $this->facultyService->updateCoursePreferences($request, $faculty);
+    }
+
+    public function getBlockPreferences($facultyId) {
+        return $this->facultyService->getBlockPreferences($facultyId);
+    }
+
+    public function storeBlockPreferences(Request $request, Faculties $faculty) {
+        return $this->facultyService->storeBlockPreferences($request, $faculty);
+    }
+
+    public function updateBlockPreferences(Request $request, Faculties $faculty) {
+        return $this->facultyService->updateBlockPreferences($request, $faculty);
+    }
+
 }

@@ -44,4 +44,8 @@ class CoursesController extends Controller
 
         return $this->coursesService->getAllPrerequisites($courseId);
     }
+
+    public function getFacultyPreferences($courseId) {
+        return $this->coursesService->getFacultyPreferences($courseId);
+    }
 }

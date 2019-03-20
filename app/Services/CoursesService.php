@@ -87,4 +87,8 @@ class CoursesService
         return Courses::find($courseId)->prerequisites()->get();
     }
 
+    public function getFacultyPreferences($courseId){
+        return Courses::find($courseId)->facultyPreferences()->get();
+    }
+
 }

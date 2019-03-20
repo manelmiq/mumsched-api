@@ -52,6 +52,7 @@ class StudentsController extends Controller
     {
         return $this->studentsService->show($id);
     }
+
     public function update(Request $request, Students $students)
     {
         return $this->studentsService->update($request, $students);
