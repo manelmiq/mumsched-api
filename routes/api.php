@@ -13,41 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-//Route::post('login', 'Auth\LoginController@login');
-//Route::post('logout', 'Auth\LoginController@logout');
-//Route::post('register', 'Auth\RegisterController@register');
-
+//=================Logins Routes===========================
 Route::prefix('login')->group(function () {
     Route::post('student', 'StudentsController@login');
     Route::post('admin', 'AdminsController@login');
     Route::post('faculty', 'FacultyController@login');
 });
 
-
-Route::post('logout', 'Auth\LoginController@logout');
-Route::post('register', 'Auth\RegisterController@register');
-
-
-Route::get('articles', 'ArticleController@index');
-Route::get('articles/{article}', 'ArticleController@show');
-Route::post('articles', 'ArticleController@store');
-Route::put('articles/{article}', 'ArticleController@update');
-Route::delete('articles/{article}', 'ArticleController@delete');
-
-
-
-
-Route::get('articles', 'ArticleController@index');
-Route::get('articles/{article}', 'ArticleController@show');
-Route::post('articles', 'ArticleController@store');
-Route::put('articles/{article}', 'ArticleController@update');
-Route::delete('articles/{article}', 'ArticleController@delete');
-
-
+//=================Students Routes===========================
 Route::get('students', 'StudentsController@index');
 Route::get('students/{students}', 'StudentsController@show');
 Route::post('students', 'StudentsController@store');
@@ -55,7 +28,6 @@ Route::put('students/{students}', 'StudentsController@update');
 Route::delete('students/{students}', 'StudentsController@delete');
 Route::get('students/{students}/blocks', 'StudentsController@getBlocks');
 Route::get('students/{students}/courses_available', 'StudentsController@getCoursesAvailable');
-
 
 //=================Course Routes===========================
 Route::get('courses', 'CoursesController@index');
@@ -124,12 +96,3 @@ Route::put('students_blocks/{blocks}', 'StudentBlocksController@update');
 Route::delete('students_blocks/{blocks}', 'StudentBlocksController@delete');
 
 
-
-
-
-//php artisan make:controller PhotoController --resource
-
-
-Route::group(['middleware' => 'auth:api'], function() {
-
-});
