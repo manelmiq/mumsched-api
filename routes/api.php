@@ -28,11 +28,8 @@ Route::prefix('login')->group(function () {
 });
 
 
-
 Route::post('logout', 'Auth\LoginController@logout');
 Route::post('register', 'Auth\RegisterController@register');
-
-
 
 
 Route::get('articles', 'ArticleController@index');
@@ -111,7 +108,6 @@ Route::post('sections', 'SectionsController@store');
 Route::put('sections/{sections}', 'SectionsController@update');
 Route::delete('sections/{sections}', 'SectionsController@delete');
 
-
 //==================== Students Courses Registration Routes ======================
 Route::get('registrations', 'StudentCourseRegistrationController@index');
 Route::get('registrations/{registration}', 'StudentCourseRegistrationController@show');
@@ -119,14 +115,12 @@ Route::post('registrations', 'StudentCourseRegistrationController@store');
 Route::put('registrations/{registrations}', 'StudentCourseRegistrationController@update');
 Route::delete('registrations/{registration}', 'StudentCourseRegistrationController@delete');
 
-
 //==================== StudentsBlocks  Routes ======================
 Route::get('students_blocks', 'StudentBlocksController@index');
 Route::get('students_blocks/{blocks}', 'StudentBlocksController@show');
 Route::post('students_blocks', 'StudentBlocksController@store');
 Route::put('students_blocks/{blocks}', 'StudentBlocksController@update');
 Route::delete('students_blocks/{blocks}', 'StudentBlocksController@delete');
-
 
 
 
