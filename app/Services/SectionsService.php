@@ -44,6 +44,7 @@ class SectionsService
 
     public function getAllFacultiesPreferences(Blocks $block, Courses $course)
     {
+
         $facultyCoursePreferences =  $course->facultyPreferences()->get();
         $facultyBlockPreferences = $block->facultyPreferences()->get();
 
@@ -57,7 +58,8 @@ class SectionsService
         foreach ($facultyBlockPreferences as $blockPreference) {
             foreach ($facultyCoursePreferences as $coursePreference) {
                 if ($coursePreference->id == $blockPreference->id) {
-                    $faculties[$i] = $coursePreference;   //get the whole obj faculty
+                    $faculties[$i] = $coursePreference->all(['id', 'firstName', 'lastName', 'email', 'created_at',
+                        'updated_at'])->first();
                     $i++;
                 }
             }

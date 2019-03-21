@@ -16,12 +16,12 @@ class AdminsService
 {
     public function index()
     {
-        return Admins::all();
+        return Admins::all(['id', 'name', 'email', 'created_at', 'updated_at']);
     }
 
     public function show($id)
     {
-        return Admins::find($id);
+        return Admins::find($id)->first(['id', 'name', 'email', 'created_at', 'updated_at']);
     }
 
     public function store(Request $request)
