@@ -194,8 +194,8 @@ class StudentsService
             $registration = json_decode(json_encode($registration), true);
             array_push($blocksRegister, $registration['id_block']);
         }
-
         $index = 0;
+
         foreach ($coursesAvailables as $coursesAvailableList) {
             $coursesAvailableList = json_decode(json_encode($coursesAvailableList), true);
             $coursesAvailablesFilter[$index]['courses'] = [];
@@ -208,11 +208,20 @@ class StudentsService
                 }
                 if ($tobeAdd) {
                     array_push($coursesAvailablesFilter[$index]['courses'], $coursesArrayFormat);
+                } else {
+                    array_shift($coursesAvailablesFilter[$index]);
                 }
             }
             $index++;
         }
-        return response()->json($coursesAvailablesFilter, 200);
+        $final = array();
+        foreach ($coursesAvailablesFilter as $finalFilter) {
+            if(sizeof($finalFilter) == 0){
+                continue;
+            }
+            $final[] = $finalFilter;
+        }
+        return response()->json($final, 200);
     }
 
 
