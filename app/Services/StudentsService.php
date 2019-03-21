@@ -208,15 +208,16 @@ class StudentsService
                 }
                 if ($tobeAdd) {
                     array_push($coursesAvailablesFilter[$index]['courses'], $coursesArrayFormat);
-                } else {
-                    array_shift($coursesAvailablesFilter[$index]);
+                }
+                else {
+                    unset($coursesAvailablesFilter[$index]);
                 }
             }
             $index++;
         }
         $final = array();
         foreach ($coursesAvailablesFilter as $finalFilter) {
-            if(sizeof($finalFilter) == 0){
+            if(count($finalFilter) == 0){
                 continue;
             }
             $final[] = $finalFilter;
