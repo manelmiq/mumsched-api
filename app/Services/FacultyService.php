@@ -120,7 +120,7 @@ class FacultyService
         }
 
         if ($blockPreferences == null or count($blockPreferences) == 0) {
-            return response()->json(blocksPreferenceEqualsNull($facultyId, $blocks));
+            return response()->json($this->blocksPreferenceEqualsNull($facultyId, $blocks));
         }
 
         foreach ($blocks as $block) {
