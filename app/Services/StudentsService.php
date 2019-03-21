@@ -22,13 +22,13 @@ class StudentsService
 {
     public function index()
     {
-        return Students::all(['id', 'name', 'email', 'id_entry', 'nacionality', 'track_type',
+        return Students::all(['id', 'firstName', 'lastName', 'email', 'id_entry', 'nacionality', 'track_type',
             'registration_number', 'starting_course', 'created_at', 'updated_at']);
     }
 
     public function show($id)
     {
-        return Students::find($id)->first(['id', 'name', 'email', 'id_entry', 'nacionality', 'track_type',
+        return Students::find($id)->first(['id', 'firstName', 'lastName', 'email', 'id_entry', 'nacionality', 'track_type',
             'registration_number', 'starting_course', 'created_at', 'updated_at']);
     }
 
