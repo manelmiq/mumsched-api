@@ -59,6 +59,13 @@ class StudentsService
         $allBLocks = Blocks::all()->toArray();
         $studentBlocks = StudentBlocks::where('id_student', '=', $student)->get()->toArray();
 
+        $result = $this->formatStudentsGetAllBlocks($allBLocks, $studentBlocks);
+
+        return $result;
+    }
+
+    public function formatStudentsGetAllBlocks($allBLocks, $studentBlocks) {
+        
         $response = [];
         foreach ($allBLocks as $block) {
             foreach ($studentBlocks as $studentBlock) {
@@ -187,6 +194,7 @@ class StudentsService
         $arrayJson = json_decode(json_encode($arrayJson), true);
         $coursesAvailables = $arrayJson;
         $coursesAvailablesFilter = $arrayJson;
+
         $sectionsRegistrations = Students::find($students)->sectionsScheduled()->get();
         $sectionsRegistrations = json_decode(json_encode($sectionsRegistrations), true);
         $blocksRegister = array();

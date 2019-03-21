@@ -51,18 +51,11 @@ class FacultyService
         $courses = Courses::all();
 
         if ($courses == null or count($courses) == 0) {
-            $response['faculty_id'] = $facultyId;
-            $response['courses'] = null;
-            return response()->json($response);
+           return response()->json($this->coursesEqualsNull($facultyId));
         }
 
         if ($coursePreferences == null or count($coursePreferences) == 0) {
-            foreach ($courses as $course) {
-                $course->isPreference = false;
-            }
-            $response['faculty_id'] = $facultyId;
-            $response['courses'] = $courses;
-            return response()->json($response);
+            return response()->json($this->coursesPreffEqualsNull($facultyId, $courses));
         }
 
         foreach ($courses as $course) {
@@ -79,6 +72,22 @@ class FacultyService
         $response['faculty_id'] = $facultyId;
         $response['courses'] = $courses;
         return response()->json($response);
+    }
+
+     // testing it
+    public function coursesEqualsNull($facultyId) {
+        $response['faculty_id'] = $facultyId;
+        $response['courses'] = null;
+        return $response;
+    }
+
+    public function coursesPreffEqualsNull($facultyId, $courses) {
+        foreach ($courses as $course) {
+            $course->isPreference = false;
+        }
+        $response['faculty_id'] = $facultyId;
+        $response['courses'] = $courses;
+        return $response;
     }
 
     public function storeCoursePreferences(Request $request, Faculties $faculty) {
@@ -100,27 +109,18 @@ class FacultyService
         $faculty->coursePreferences()->sync($request['courses_id']);
 
         return $this->getCoursePreferences($faculty->id);
-
     }
-
 
     public function getBlockPreferences($facultyId) {
         $blockPreferences = Faculties::find($facultyId)->blockPreferences()->get();
         $blocks = Blocks::all();
 
         if ($blocks == null or count($blocks) == 0) {
-            $response['faculty_id'] = $facultyId;
-            $response['blocks'] = null;
-            return response()->json($response);
+            return response()->json($this->blocksEqualsNull($facultyId));
         }
 
         if ($blockPreferences == null or count($blockPreferences) == 0) {
-            foreach ($blocks as $block) {
-                $block->isPreference = false;
-            }
-            $response['faculty_id'] = $facultyId;
-            $response['blocks'] = $blocks;
-            return response()->json($response);
+            return response()->json(blocksPreferenceEqualsNull($facultyId, $blocks));
         }
 
         foreach ($blocks as $block) {
@@ -137,6 +137,23 @@ class FacultyService
         $response['faculty_id'] = $facultyId;
         $response['blocks'] = $blocks;
         return response()->json($response);
+    }
+
+     // testing it
+    public function blocksEqualsNull($facultyId) {
+        $response['faculty_id'] = $facultyId;
+        $response['blocks'] = null;
+        return $response;
+    }
+
+    public function blocksPreferenceEqualsNull($facultyId, $blocks) {
+        foreach ($blocks as $block) {
+            $block->isPreference = false;
+        }
+
+        $response['faculty_id'] = $facultyId;
+        $response['blocks'] = $blocks;
+        return $response;
     }
 
     public function storeBlockPreferences(Request $request, Faculties $faculty) {
