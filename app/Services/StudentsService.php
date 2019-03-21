@@ -22,12 +22,14 @@ class StudentsService
 {
     public function index()
     {
-        return Students::all();
+        return Students::all(['id', 'name', 'email', 'id_entry', 'nacionality', 'track_type',
+            'registration_number', 'starting_course', 'created_at', 'updated_at']);
     }
 
     public function show($id)
     {
-        return Students::find($id);
+        return Students::find($id)->first(['id', 'name', 'email', 'id_entry', 'nacionality', 'track_type',
+            'registration_number', 'starting_course', 'created_at', 'updated_at']);
     }
 
     public function store(Request $request)

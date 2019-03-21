@@ -20,12 +20,12 @@ class FacultyService
 
     public function index()
     {
-        return Faculties::all();
+        return Faculties::all(['id', 'firstName', 'lastName', 'email', 'created_at', 'updated_at']);
     }
 
     public function show($id)
     {
-        return Faculties::find($id);
+        return Faculties::find($id)->first(['id', 'firstName', 'lastName', 'email', 'created_at', 'updated_at']);
     }
 
     public function store(Request $request)

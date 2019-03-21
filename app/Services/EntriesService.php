@@ -42,7 +42,7 @@ class EntriesService
 
     public function getStudents($entryId)
     {
-//        return Students::where('id_entry', $id)->get();
-        return Entries::find($entryId)->students()->get();
+        return Entries::find($entryId)->students()->get(['id', 'name', 'email', 'id_entry', 'nacionality', 'track_type',
+            'registration_number', 'starting_course', 'created_at', 'updated_at']);
     }
 }
