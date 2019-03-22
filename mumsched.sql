@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.25)
-# Database: mydb
-# Generation Time: 2019-03-21 00:44:49 +0000
+# Database: mumsched
+# Generation Time: 2019-03-22 19:25:28 +0000
 # ************************************************************
 
 
@@ -197,7 +197,11 @@ VALUES
 	(12,6,7,NULL,NULL),
 	(13,6,8,NULL,NULL),
 	(15,7,6,NULL,NULL),
-	(16,7,7,NULL,NULL);
+	(16,7,7,NULL,NULL),
+	(17,7,8,NULL,NULL),
+	(18,8,6,NULL,NULL),
+	(19,8,7,NULL,NULL),
+	(20,8,8,NULL,NULL);
 
 /*!40000 ALTER TABLE `faculty_blocks_preferences` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -229,7 +233,10 @@ VALUES
 	(16,6,8,NULL,NULL),
 	(17,6,11,NULL,NULL),
 	(18,6,13,NULL,NULL),
-	(19,7,13,NULL,NULL);
+	(19,7,13,NULL,NULL),
+	(20,7,9,NULL,NULL),
+	(21,8,9,NULL,NULL),
+	(22,8,13,NULL,NULL);
 
 /*!40000 ALTER TABLE `faculty_courses_preferences` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -281,7 +288,7 @@ LOCK TABLES `sections` WRITE;
 INSERT INTO `sections` (`id`, `id_course`, `id_block`, `capacity`, `id_faculty`, `created_at`, `updated_at`)
 VALUES
 	(10,11,7,30,6,'2019-03-21 00:19:14','2019-03-21 00:35:40'),
-	(11,13,7,30,7,'2019-03-21 00:22:21','2019-03-21 00:37:59'),
+	(11,9,7,30,7,'2019-03-21 00:22:21','2019-03-22 19:23:23'),
 	(12,8,8,20,6,'2019-03-21 00:22:34','2019-03-21 00:35:47');
 
 /*!40000 ALTER TABLE `sections` ENABLE KEYS */;
@@ -375,6 +382,15 @@ CREATE TABLE `students_courses_registrations` (
   CONSTRAINT `fk_students_courses_registration_block_students` FOREIGN KEY (`id_student`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `students_courses_registrations` WRITE;
+/*!40000 ALTER TABLE `students_courses_registrations` DISABLE KEYS */;
+
+INSERT INTO `students_courses_registrations` (`id`, `id_section`, `id_student`, `created_at`, `updated_at`)
+VALUES
+	(1,12,19,'2019-03-22 19:16:28','2019-03-22 19:16:28');
+
+/*!40000 ALTER TABLE `students_courses_registrations` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 
