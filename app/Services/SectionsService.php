@@ -61,7 +61,7 @@ class SectionsService
 
         $facultyResp = [];
         foreach ($response as $resp) {
-            array_push($facultyResp, Faculties::where('id', $resp['id_faculty'])->get(['id', 'firstName', 'lastName', 'email', 'created_at', 'updated_at']));
+            array_push($facultyResp, Faculties::where('id', $resp['id_faculty'])->get(['id', 'firstName', 'lastName', 'email', 'created_at', 'updated_at'])->first());
         }
 
         return $facultyResp;
