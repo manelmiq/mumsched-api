@@ -1,11 +1,3 @@
-## Example Laravel API
-
- This is a sample project to show how you could write an API using Laravel 5. You can follow the tutorial online at https://www.toptal.com/laravel/restful-laravel-api-tutorial
-
- There will be some minor differences, specially regarding downloaded packages, as I used the
- excellent [Laravel Ide Helper](https://github.com/barryvdh/laravel-ide-helper) to setup
- PhpStorm bindings and other features.
-
 ## Running the API
 
 It's very simple to get the API up and running. First, create the database (and database
