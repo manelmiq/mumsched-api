@@ -52,7 +52,7 @@ class SectionsController extends Controller
         return $this->sectionsService->delete($sections);
     }
 
-    public function getAllFacultiesPreferences(Blocks $block, Courses $course)
+    public function getAllFacultiesPreferences($block, $course)
     {
         return $this->sectionsService->getAllFacultiesPreferences($block, $course);
     }
